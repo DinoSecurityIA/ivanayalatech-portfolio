@@ -2,15 +2,15 @@ import type { Site, Page, Links, Socials } from "@types"
 
 // Global
 export const SITE: Site = {
-  TITLE: "Astro Sphere",
-  DESCRIPTION: "Welcome to Astro Sphere, a portfolio and blog for designers and developers.",
+  TITLE: "Ivan Ayala",
+  DESCRIPTION: "Professional IT portfolio showcasing network administration, system infrastructure, and indepedent homelab projects.",
   AUTHOR: "Mark Horn",
 }
 
 // Work Page
 export const WORK: Page = {
-  TITLE: "Work",
-  DESCRIPTION: "Places I have worked.",
+  TITLE: "Experience",
+  DESCRIPTION: "Professional experience in IT, networking, hardware troubleshooting, and infrastructure support.",
 }
 
 // Blog Page
@@ -38,7 +38,7 @@ export const LINKS: Links = [
     HREF: "/", 
   },
   { 
-    TEXT: "Work", 
+    TEXT: "Experience", 
     HREF: "/work", 
   },
   { 
