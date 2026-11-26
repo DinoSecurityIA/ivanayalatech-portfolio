@@ -1,4 +1,3 @@
-
 ---
 title: "Virtualized Infrastructure, Storage & Disaster Recovery"
 summary: "Design and implementation of a Proxmox-based infrastructure environment with redundant ZFS storage, Linux virtualization, centralized file services, infrastructure monitoring, and validated disaster recovery procedures."
