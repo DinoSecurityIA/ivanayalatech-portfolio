@@ -45,3 +45,48 @@ monitoring, documentation, and recovery testing.
 - SMART monitoring
 - Bash
 - Uptime Kuma
+
+## Infrastructure Architecture
+
+The environment is built around a dedicated Proxmox VE
+host providing centralized compute, virtualization,
+and storage resources.
+
+### Compute Resources
+
+- 12 logical processors
+- 46 GiB of usable system memory
+- Hardware-assisted virtualization
+- Dedicated GPU for media workloads
+
+### Storage Architecture
+
+Storage is divided into three independent ZFS mirrored
+pools based on workload requirements.
+
+| Storage Pool | Configuration | Purpose |
+| --- | --- | --- |
+| Operating System | 2 x 120 GB SATA SSD | Proxmox VE |
+| Virtual Machines | 2 x 256 GB NVMe SSD | VM and container storage |
+| Media Storage | 2 x 16 TB HDD | Centralized file and media storage |
+
+Separating these storage workloads reduces contention
+between the operating system, virtualized applications,
+and bulk file storage.
+
+ZFS mirroring provides protection against individual
+drive failures within each pool while supporting data
+integrity verification and storage health monitoring.
+
+### Virtualization Architecture
+
+The environment uses both KVM virtual machines and LXC
+containers to balance workload isolation, resource
+efficiency, and application requirements.
+
+- Dedicated Linux fileserver using an LXC container.
+- Dedicated virtual machine for media services.
+- Dedicated Linux virtual machine for containerized
+  application workloads.
+- Independent backup server for virtual machine and
+  container recovery.
