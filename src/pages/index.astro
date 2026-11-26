@@ -2,42 +2,72 @@
 import { getCollection } from "astro:content"
 import PageLayout from "@layouts/PageLayout.astro"
 import ArrowCard from "@components/ArrowCard"
-import StackCard from "@components/StackCard.astro"
 import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
-
-const posts = (await getCollection("blog"))
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0,3)
 
 const projects = (await getCollection("projects"))
   .filter(project => !project.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0,3)
 
-const stack = [
-  { 
-    text: "Astro", 
-    icon: "astro", 
-    href: "https://astro.build" 
+const skills = [
+  {
+    category: "Technical Support",
+    technologies: [
+      "Windows", "macOS", "Linux",
+      "Hardware", "Software", "AV Systems"
+    ]
   },
-  { 
-    text: "Javascript", 
-    icon: "javascript", 
-    href: "https://www.javascript.com" 
+  {
+    category: "Networking & Security",
+    technologies: [
+      "UniFi", "Cisco", "OPNsense",
+      "VLANs", "DNS", "DHCP", "VPNs"
+    ]
   },
-  { 
-    text: "Typescript", 
-    icon: "typescript", 
-    href: "https://www.typescriptlang.org" 
+  {
+    category: "Systems & Virtualization",
+    technologies: [
+      "Proxmox VE", "VMware", "KVM",
+      "LXC", "ZFS", "SMB", "NFS"
+    ]
   },
-  { 
-    text: "Tailwind", 
-    icon: "tailwind", 
-    href: "https://tailwindcss.com" 
+  {
+    category: "Enterprise IT Operations",
+    technologies: [
+      "Okta", "Google Workspace", "MFA",
+      "Jira", "MaintainX"
+    ]
   },
+  {
+    category: "Application Infrastructure",
+    technologies: [
+      "Node.js", "NGINX", "OAuth 2.0",
+      "REST APIs", "HCL Domino Leap"
+    ]
+  },
+  {
+    category: "Containers & Cloud Deployment",
+    technologies: [
+      "Docker", "Docker Compose", "Git",
+      "GitHub", "Cloudflare"
+    ]
+  },
+  {
+    category: "Monitoring & Disaster Recovery",
+    technologies: [
+      "Uptime Kuma", "Bash", "SMART",
+      "Proxmox Backup Server"
+    ]
+  },
+  {
+    category: "Physical Security",
+    technologies: [
+      "Milestone XProtect", "Axis", "Hanwha",
+      "IP Surveillance", "Access Control"
+    ]
+  }
 ]
 ---
 
@@ -117,54 +147,32 @@ const stack = [
   </article>
 </section>
 
-      <!-- Blog Preview Section -->
-      <section class="animate">
-        <div class="space-y-4">
-          <div class="flex justify-between">
-            <p class="font-semibold text-black dark:text-white">
-              Recent posts
-            </p>
-            <a href="/blog" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
-              <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
-                All posts
-              </span>
-            </a>
-          </div>
-          <ul class="space-y-4">
-            {posts.map((post) => (
-              <li>
-                <ArrowCard entry={post} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+     <!-- Technical Skills Section -->
+<section class="animate">
+  <div class="space-y-4">
+    <h2 class="font-semibold text-black dark:text-white">
+      Technical Skills
+    </h2>
 
-      <!-- Tech Stack Section -->
-      <section class="animate">
-        <div class="space-y-4">
-          <p class="font-semibold text-black dark:text-white">
-            Website build with
-          </p>
-          <div class="flex flex-wrap items-center gap-2 mt-5">
-            {stack.map(item => (
-              <StackCard 
-                text={item.text}
-                icon={item.icon}
-                href={item.href}
-              />
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {skills.map(group => (
+        <div class="space-y-3">
+          <h3 class="font-medium text-black dark:text-white">
+            {group.category}
+          </h3>
+
+          <div class="flex flex-wrap gap-2">
+            {group.technologies.map(technology => (
+              <span class="px-2 py-1 text-xs rounded border border-black/20 dark:border-white/20">
+                {technology}
+              </span>
             ))}
           </div>
-          <div>
-            Performing reactivity and statefulness, special guest
-            <a href="https://www.solidjs.com/" target="_blank" class="w-fit group underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
-              <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
-                SolidJS
-              </span>
-            </a>
-          </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       <!-- Project Preview Section -->
       <section class="animate">
